@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O mnie – Karolina Ceglarek Florystyka | Historia i Proces Twórczy</title>
+  <meta name="description" content="Poznaj Karolinę Ceglarek – dyplomowaną florystkę. Zobacz, jak krok po kroku powstają autorskie bukiety i aranżacje kwiatowe.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="O mnie – Karolina Ceglarek Florystyka">
+  <meta property="og:description" content="Moja historia, filozofia pracy z kwiatami oraz proces realizacji zamówień florystycznych.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23181014'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23C8A464' stroke-width='1.2'/%3E%3Cpath d='M32 13C26 23 26 41 32 51C38 41 38 23 32 13Z' fill='none' stroke='%23D698A4' stroke-width='1.8'/%3E%3Cpath d='M20 32C27 26 37 26 44 32C37 38 27 38 20 32Z' fill='none' stroke='%23C8A464' stroke-width='1.5'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-sub">
+
+  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+    <canvas id="petalsCanvas"></canvas>
+  </div>
+
+  <!-- NAWIGACJA Z NOWYM LOGO -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container glass-panel" aria-label="Główna nawigacja">
+      <a href="index.html" class="nav-logo" aria-label="Karolina Ceglarek Florystyka – Strona główna">
+        <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+          <path d="M32 6 L58 32 L32 58 L6 32 Z" stroke="currentColor" stroke-width="1.2" opacity="0.75"/>
+          <path d="M32 12 C24 24, 24 40, 32 52 C40 40, 40 24, 32 12 Z" stroke="var(--accent-rose)" stroke-width="1.7"/>
+          <path d="M32 44 C21 40, 16 30, 20 21 C27 25, 31 34, 32 44 Z" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M32 44 C43 40, 48 30, 44 21 C37 25, 33 34, 32 44 Z" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="32" cy="30" r="2" fill="var(--accent-gold)"/>
+        </svg>
+        <div class="logo-text-group">
+          <span class="logo-name">Karolina Ceglarek</span>
+          <span class="logo-tag">florystyka</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Start</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="omnie.html" class="nav-link active" aria-current="page">O mnie</a></li>
+        <li><a href="index.html#kontakt" class="nav-link">Kontakt</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Przełącz motyw kolorystyczny" title="Zmień motyw">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="burger-btn" id="burgerBtn" aria-label="Otwórz menu nawigacji" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MENU MOBILNE -->
+  <div class="mobile-menu-overlay" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+    <div class="mobile-menu-panel glass-panel">
+      <span class="mobile-menu-eyebrow">Menu nawigacji</span>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Start</a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link">Moje portfolio</a></li>
+        <li><a href="omnie.html" class="mobile-nav-link active">O mnie</a></li>
+        <li><a href="index.html#kontakt" class="mobile-nav-link">Zamów bukiet / Kontakt</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <p>Karolina Ceglarek — Florystyka</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="subpage-main">
+    <!-- SEKCJA 1: PORTRET ARCHITEKTONICZNY + HISTORIA -->
+    <section class="about-hero container">
+      <div class="about-grid">
+        
+        <div class="about-portrait-col reveal">
+          <div class="editorial-arch-frame">
+            <div class="arch-outline-offset" aria-hidden="true"></div>
+            <div class="portrait-inner-arch">
+              <!-- ZDJĘCIE PORTRETOWE KAROLINY DO PODMIANY -->
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=950&q=85" 
+                width="950" height="1200"
+                alt="Karolina Ceglarek – Dyplomowana Florystka" 
+                class="portrait-img"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text-col reveal">
+          <span class="section-eyebrow">Autorska pracownia florystyczna</span>
+          <h1 class="subpage-title">Cześć, jestem Karolina</h1>
+          
+          <p class="about-lead">
+            Florystyka to dla mnie sztuka zatrzymywania ulotnych emocji w żywej, organicznej formie. 
+            Tworzę kompozycje, które łączą niewymuszoną lekkość natury z wyrafinowaną elegancją.
+          </p>
+          
+          <p class="about-paragraph">
+            Każdy bukiet traktuję jak indywidualne dzieło. Zamiast powielać gotowe schematy, 
+            wsłuchuję się w potrzeby moich klientek i klientów – dobieram nieoczywiste połączenia faktur, 
+            szlachetne odmiany kwiatów ciętych oraz delikatny ruch gałązek, które nadają całości przestrzenny oddech.
+          </p>
+
+          <p class="about-paragraph">
+            Niezależnie od tego, czy przygotowuję kameralny bukiet okolicznościowy, czy kompleksową oprawę florystyczną 
+            wymarzonego ślubu, dbam o najwyższą świeżość roślin i dopracowanie każdego detalu – aż po jedwabną wstążkę.
+          </p>
+
+          <div class="about-signature">
+            <span class="signature-name">Karolina Ceglarek</span>
+            <span class="signature-role">Dyplomowana Florystka</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEKCJA 2: SEKWENCYJNY MANIFEST WARTOŚCI (PŁYNNE LINIE ZAMIAST KONTENERÓW) -->
+    <section class="manifesto-section container section-padding">
+      <div class="manifesto-header reveal">
+        <span class="section-eyebrow">Filozofia mojej pracy</span>
+        <h2 class="editorial-big-heading">Trzy filary każdej kompozycji</h2>
+      </div>
+
+      <div class="manifesto-stream">
+        <div class="manifesto-row reveal">
+          <span class="manifesto-roman">I</span>
+          <h3 class="manifesto-title">Sezonowość i selekcja o świcie</h3>
+          <p class="manifesto-text">
+            Osobiście wybieram najświeższe kwiaty od sprawdzonych ogrodników i z giełdy kwiatowej, dbając o ich prawidłowe kondycjonowanie, by zachowały trwałość przez wiele dni.
+          </p>
+          <span class="manifesto-line-draw" aria-hidden="true"></span>
+        </div>
+
+        <div class="manifesto-row reveal">
+          <span class="manifesto-roman">II</span>
+          <h3 class="manifesto-title">Naturalny ruch i proporcja</h3>
+          <p class="manifesto-text">
+            Unikam ciężkich, przeładowanych form i sztucznych wypełniaczy. Pozwalam kwiatom oddychać, budując wielowymiarowe kompozycje pełne światła i szlachetnych barw.
+          </p>
+          <span class="manifesto-line-draw" aria-hidden="true"></span>
+        </div>
+
+        <div class="manifesto-row reveal">
+          <span class="manifesto-roman">III</span>
+          <h3 class="manifesto-title">Dopracowanie w każdym detalu</h3>
+          <p class="manifesto-text">
+            Od perfekcyjnego oczyszczenia łodyg, przez dobór naczyń i świec, aż po eleganckie pakowanie — każdy element tworzy spójne doświadczenie klasy premium.
+          </p>
+          <span class="manifesto-line-draw" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKCJA 3: INTERAKTYWNA OŚ CZASU RYSOWANA PODCZAS SCROLLU (CO PO KOLEI SIĘ DZIEJE) -->
+    <section class="flow-timeline-section container section-padding" id="flowTimelineSection">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Krok po kroku</span>
+        <h2 class="editorial-big-heading">Jak powstaje Twoje zamówienie</h2>
+        <p class="section-lead">
+          Przewiń w dół i zobacz, jak przebiega proces twórczy — od pierwszej rozmowy aż do momentu wręczenia gotowego bukietu.
+        </p>
+      </div>
+
+      <div class="flow-timeline" id="flowTimeline">
+        <!-- Pionowa linia rysująca się na żywo podczas przewijania -->
+        <div class="flow-spine-track" aria-hidden="true">
+          <div class="flow-spine-fill" id="flowSpineFill"></div>
+        </div>
+
+        <!-- Etap 01 -->
+        <article class="flow-step" data-step="1">
+          <div class="flow-node" aria-hidden="true">
+            <span class="flow-node-dot"></span>
+            <svg class="flow-node-leaf" viewBox="0 0 48 48" fill="none">
+              <path d="M24 42 C14 32, 14 16, 24 6 C34 16, 34 32, 24 42 Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flow-step-body">
+            <span class="flow-step-number">Etap 01</span>
+            <h3 class="flow-step-title">Rozmowa i poznanie wizji</h3>
+            <p class="flow-step-desc">
+              Opowiadasz mi o okazji, osobie, którą chcesz obdarować, lub klimacie uroczystości ślubnej. Ustalamy ulubioną kolorystykę, charakter kompozycji, termin oraz budżet.
+            </p>
+          </div>
+        </article>
+
+        <!-- Etap 02 -->
+        <article class="flow-step" data-step="2">
+          <div class="flow-node" aria-hidden="true">
+            <span class="flow-node-dot"></span>
+            <svg class="flow-node-leaf" viewBox="0 0 48 48" fill="none">
+              <path d="M24 42 C14 32, 14 16, 24 6 C34 16, 34 32, 24 42 Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flow-step-body">
+            <span class="flow-step-number">Etap 02</span>
+            <h3 class="flow-step-title">Koncepcja i dobór kwiatów</h3>
+            <p class="flow-step-desc">
+              Tworzę spójną paletę barw i dobieram najpiękniejsze sezonowe gatunki kwiatów oraz dodatki florystyczne, które idealnie oddadzą pożądany nastrój.
+            </p>
+          </div>
+        </article>
+
+        <!-- Etap 03 -->
+        <article class="flow-step" data-step="3">
+          <div class="flow-node" aria-hidden="true">
+            <span class="flow-node-dot"></span>
+            <svg class="flow-node-leaf" viewBox="0 0 48 48" fill="none">
+              <path d="M24 42 C14 32, 14 16, 24 6 C34 16, 34 32, 24 42 Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flow-step-body">
+            <span class="flow-step-number">Etap 03</span>
+            <h3 class="flow-step-title">Autorskie wykonanie w pracowni</h3>
+            <p class="flow-step-desc">
+              W dniu realizacji selekcjonuję świeże kwiaty, odpowiednio je nawadniam i układam kompozycję ręcznie, dbając o jej lekkość, trwałość i szlachetne wykończenie.
+            </p>
+          </div>
+        </article>
+
+        <!-- Etap 04 -->
+        <article class="flow-step" data-step="4">
+          <div class="flow-node" aria-hidden="true">
+            <span class="flow-node-dot"></span>
+            <svg class="flow-node-leaf" viewBox="0 0 48 48" fill="none">
+              <path d="M24 42 C14 32, 14 16, 24 6 C34 16, 34 32, 24 42 Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flow-step-body">
+            <span class="flow-step-number">Etap 04</span>
+            <h3 class="flow-step-title">Odbiór osobisty lub dostawa</h3>
+            <p class="flow-step-desc">
+              Zabezpieczony bukiet odbierasz w umówionej godzinie lub dostarczam i montuję całą oprawę florystyczną bezpośrednio na miejscu uroczystości.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DOLNE ZAPROSZENIE DO KONTAKTU (BEZ KONTENERA) -->
+    <section class="editorial-bottom-cta container reveal">
+      <div class="editorial-divider-line" aria-hidden="true"></div>
+      <span class="section-eyebrow">Rozpocznijmy współpracę</span>
+      <h2 class="editorial-big-heading">Stwórzmy coś pięknego</h2>
+      <p class="section-lead">
+        Skontaktuj się ze mną telefonicznie, przez WhatsApp lub e-mail i zarezerwuj swój termin.
+      </p>
+      <a href="index.html#kontakt" class="hero-center-btn glass-glossy-btn magnetic-btn">
+        <span class="btn-glow-aura" aria-hidden="true"></span>
+        <span class="btn-sheen" aria-hidden="true"></span>
+        <span class="btn-icon-flower" aria-hidden="true">✦</span>
+        <span class="btn-text">Zamów bukiet</span>
+      </a>
+    </section>
+  </main>
+
+  <!-- STOPKA Z SOCIAL MEDIAMI -->
+  <footer class="site-footer">
+    <div class="container footer-editorial">
+      <div class="footer-brand-col">
+        <a href="index.html" class="nav-logo footer-logo">
+          <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+            <path d="M32 6 L58 32 L32 58 L6 32 Z" stroke="currentColor" stroke-width="1.2" opacity="0.75"/>
+            <path d="M32 12 C24 24, 24 40, 32 52 C40 40, 40 24, 32 12 Z" stroke="var(--accent-rose)" stroke-width="1.7"/>
+            <circle cx="32" cy="30" r="2" fill="var(--accent-gold)"/>
+          </svg>
+          <div class="logo-text-group">
+            <span class="logo-name">Karolina Ceglarek</span>
+            <span class="logo-tag">florystyka</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="footer-socials" aria-label="Media społecznościowe">
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="instagram" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="facebook" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+          <span>Facebook</span>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="tiktok" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+          </svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+
+      <p class="footer-copy">&copy; <span id="currentYear">2026</span> Karolina Ceglarek. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

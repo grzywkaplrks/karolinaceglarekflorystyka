@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Karolina Ceglarek Florystyka | Galeria Kompozycji</title>
+  <meta name="description" content="Zobacz portfolio florystyczne Karoliny Ceglarek: autorskie bukiety, florystyka ślubna i dekoracje kwiatowe.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="Portfolio – Karolina Ceglarek Florystyka">
+  <meta property="og:description" content="Wybrane kompozycje kwiatowe, bukiety ślubne i okolicznościowe.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23181014'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23C8A464' stroke-width='1.2'/%3E%3Cpath d='M32 13C26 23 26 41 32 51C38 41 38 23 32 13Z' fill='none' stroke='%23D698A4' stroke-width='1.8'/%3E%3Cpath d='M20 32C27 26 37 26 44 32C37 38 27 38 20 32Z' fill='none' stroke='%23C8A464' stroke-width='1.5'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-sub">
+
+  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+    <canvas id="petalsCanvas"></canvas>
+  </div>
+
+  <!-- NAWIGACJA Z NOWYM LOGO -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container glass-panel" aria-label="Główna nawigacja">
+      <a href="index.html" class="nav-logo" aria-label="Karolina Ceglarek Florystyka – Strona główna">
+        <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+          <path d="M32 6 L58 32 L32 58 L6 32 Z" stroke="currentColor" stroke-width="1.2" opacity="0.75"/>
+          <path d="M32 12 C24 24, 24 40, 32 52 C40 40, 40 24, 32 12 Z" stroke="var(--accent-rose)" stroke-width="1.7"/>
+          <path d="M32 44 C21 40, 16 30, 20 21 C27 25, 31 34, 32 44 Z" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M32 44 C43 40, 48 30, 44 21 C37 25, 33 34, 32 44 Z" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="32" cy="30" r="2" fill="var(--accent-gold)"/>
+        </svg>
+        <div class="logo-text-group">
+          <span class="logo-name">Karolina Ceglarek</span>
+          <span class="logo-tag">florystyka</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Start</a></li>
+        <li><a href="portfolio.html" class="nav-link active" aria-current="page">Portfolio</a></li>
+        <li><a href="omnie.html" class="nav-link">O mnie</a></li>
+        <li><a href="index.html#kontakt" class="nav-link">Kontakt</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Przełącz motyw kolorystyczny" title="Zmień motyw">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="burger-btn" id="burgerBtn" aria-label="Otwórz menu nawigacji" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MENU MOBILNE -->
+  <div class="mobile-menu-overlay" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+    <div class="mobile-menu-panel glass-panel">
+      <span class="mobile-menu-eyebrow">Menu nawigacji</span>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Start</a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link active">Moje portfolio</a></li>
+        <li><a href="omnie.html" class="mobile-nav-link">O mnie</a></li>
+        <li><a href="index.html#kontakt" class="mobile-nav-link">Zamów bukiet / Kontakt</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <p>Karolina Ceglarek — Florystyka</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="subpage-main">
+    <!-- NAGŁÓWEK PORTFOLIO (BEZ ZAKŁADEK I SEKCJI – JEDNA SPÓJNA GALERIA) -->
+    <section class="subpage-hero container">
+      <div class="subpage-hero-inner reveal">
+        <span class="section-eyebrow">Kolekcja autorskich prac</span>
+        <h1 class="subpage-title">Moje portfolio</h1>
+        <p class="section-lead">
+          Wybrane bukiety, kompozycje ślubne i aranżacje okolicznościowe. 
+          Kliknij wybrane zdjęcie, aby zobaczyć detale w pełnym wymiarze.
+        </p>
+      </div>
+    </section>
+
+    <!-- JEDNOLITA GALERIA EDYTORIALOWA -->
+    <!-- ZDJĘCIA W GALERII DO PODMIANY NA WŁASNE FOTOGRAFIE -->
+    <section class="portfolio-section container" aria-label="Galeria realizacji florystycznych">
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <!-- Pozycja 1 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Poranna Rosa">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Bukiet z białych peonii i pudrowych róż"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">01 / Kompozycja</span>
+                <h2 class="badge-title">Poranna Rosa</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 2 (Wysoka) -->
+        <article class="portfolio-item portfolio-item-tall reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Jedwabny Szlak">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1400" loading="lazy"
+              alt="Autorski bukiet w odcieniach kremu i ciepłego beżu"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">02 / Kompozycja</span>
+                <h2 class="badge-title">Jedwabny Szlak</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 3 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Szampański Wieczór">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Kwiatowa aranżacja stołu ze świecami"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">03 / Kompozycja</span>
+                <h2 class="badge-title">Szampański Wieczór</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 4 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Pudrowy Szept">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Bukiet z róż ogrodowych i eukaliptusa"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">04 / Kompozycja</span>
+                <h2 class="badge-title">Pudrowy Szept</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 5 (Wysoka) -->
+        <article class="portfolio-item portfolio-item-tall reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Szałwiowy Ogród">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1400" loading="lazy"
+              alt="Nowoczesny bukiet o luźnej formie z zielenią"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">05 / Kompozycja</span>
+                <h2 class="badge-title">Szałwiowy Ogród</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 6 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Złota Godzina">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Słoneczna kompozycja z sezonowych kwiatów"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">06 / Kompozycja</span>
+                <h2 class="badge-title">Złota Godzina</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 7 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Botaniczna Harmonia">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1464699908537-0954e50791ee?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Minimalistyczna aranżacja kwiatowa w ceramicznym naczyniu"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">07 / Kompozycja</span>
+                <h2 class="badge-title">Botaniczna Harmonia</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 8 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Aksamitny Wieczór">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Elegancki bukiet prezentowy w głębokiej palecie barw"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">08 / Kompozycja</span>
+                <h2 class="badge-title">Aksamitny Wieczór</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pozycja 9 -->
+        <article class="portfolio-item reveal" tabindex="0" role="button" aria-label="Powiększ zdjęcie: Biała Perła">
+          <div class="portfolio-media">
+            <img 
+              src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=950&q=85" 
+              width="950" height="1200" loading="lazy"
+              alt="Szlachetny biały bukiet z jaskrów i frezji"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-caption-clean">
+                <span class="badge-category">09 / Kompozycja</span>
+                <h2 class="badge-title">Biała Perła</h2>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DOLNE ZAPROSZENIE DO KONTAKTU (BEZ KONTENERA) -->
+    <section class="editorial-bottom-cta container reveal">
+      <div class="editorial-divider-line" aria-hidden="true"></div>
+      <span class="section-eyebrow">Indywidualne projekty</span>
+      <h2 class="editorial-big-heading">Marzysz o własnej kompozycji?</h2>
+      <p class="section-lead">
+        Opowiedz mi o okazji oraz ulubionych kwiatach — wspólnie stworzymy bukiet lub oprawę uroczystości.
+      </p>
+      <a href="index.html#kontakt" class="hero-center-btn glass-glossy-btn magnetic-btn">
+        <span class="btn-glow-aura" aria-hidden="true"></span>
+        <span class="btn-sheen" aria-hidden="true"></span>
+        <span class="btn-icon-flower" aria-hidden="true">✦</span>
+        <span class="btn-text">Zamów bukiet</span>
+      </a>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Podgląd zdjęcia z portfolio">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <button type="button" class="lightbox-close glass-pill" id="lightboxClose" aria-label="Zamknij podgląd">✕</button>
+    <button type="button" class="lightbox-nav lightbox-prev glass-pill" id="lightboxPrev" aria-label="Poprzednie zdjęcie">←</button>
+    <button type="button" class="lightbox-nav lightbox-next glass-pill" id="lightboxNext" aria-label="Następne zdjęcie">→</button>
+    
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption glass-panel">
+        <span class="badge-category" id="lightboxCategory"></span>
+        <h3 class="badge-title" id="lightboxTitle"></h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- STOPKA Z SOCIAL MEDIAMI -->
+  <footer class="site-footer">
+    <div class="container footer-editorial">
+      <div class="footer-brand-col">
+        <a href="index.html" class="nav-logo footer-logo">
+          <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+            <path d="M32 6 L58 32 L32 58 L6 32 Z" stroke="currentColor" stroke-width="1.2" opacity="0.75"/>
+            <path d="M32 12 C24 24, 24 40, 32 52 C40 40, 40 24, 32 12 Z" stroke="var(--accent-rose)" stroke-width="1.7"/>
+            <circle cx="32" cy="30" r="2" fill="var(--accent-gold)"/>
+          </svg>
+          <div class="logo-text-group">
+            <span class="logo-name">Karolina Ceglarek</span>
+            <span class="logo-tag">florystyka</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="footer-socials" aria-label="Media społecznościowe">
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="instagram" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="facebook" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+          <span>Facebook</span>
+        </a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" data-contact-type="tiktok" class="footer-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+          </svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+
+      <p class="footer-copy">&copy; <span id="currentYear">2026</span> Karolina Ceglarek. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
